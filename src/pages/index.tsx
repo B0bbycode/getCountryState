@@ -1,60 +1,70 @@
 import React, { useState } from 'react';
-import getCountries from '../utils/countries';
-import getStates from '../utils/states';
+import { Container, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { getCountries } from '../utils/countries';
+import { getStates } from '../utils/states';
+import CountrySelector from '../components/CountrySelector';
+import StateSelector from '../components/StateSelector';
 
 const IndexPage: React.FC = () => {
   const countries = getCountries();
   const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedState, setSelectedState] = useState('');
 
-  const handleCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const country = event.target.value;
+  const handleCountryChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    const country = event.target.value as string;
     setSelectedCountry(country);
     setSelectedState('');
   };
 
-  const handleStateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const state = event.target.value;
+  const handleStateChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    const state = event.target.value as string;
     setSelectedState(state);
   };
 
   return (
-    <div>
-      <h1>Select Country and State</h1>
+    <Container maxWidth="sm">
+      <Typography variant="h4" align="center" gutterBottom>
+        Select Country and State
+      </Typography>
 
-      <div>
-        <label htmlFor="country">Select Country:</label>
-        <select id="country" value={selectedCountry} onChange={handleCountryChange}>
-          <option value="">Select</option>
+      <FormControl fullWidth>
+        <InputLabel id="country-label">Select Country</InputLabel>
+        <Select
+          labelId="country-label"
+          id="country"
+          value={selectedCountry}
+          onChange={handleCountryChange}
+        >
+          <MenuItem value="">
+            <em>Select</em>
+          </MenuItem>
           {countries.map((country) => (
-            <option key={country} value={country}>
+            <MenuItem key={country} value={country}>
               {country}
-            </option>
+            </MenuItem>
           ))}
-        </select>
-      </div>
+        </Select>
+      </FormControl>
 
       {selectedCountry && (
-        <div>
-          <label htmlFor="state">Select State:</label>
-          <select id="state" value={selectedState} onChange={handleStateChange}>
-            <option value="">Select</option>
-            {getStates(selectedCountry).map((state) => (
-              <option key={state} value={state}>
-                {state}
-              </option>
-            ))}
-          </select>
-        </div>
+        <StateSelector
+          country={selectedCountry}
+          selectedState={selectedState}
+          onStateChange={handleStateChange}
+        />
       )}
 
       {selectedState && (
         <div>
-          <p>Selected Country: {selectedCountry}</p>
-          <p>Selected State: {selectedState}</p>
+          <Typography variant="body1">
+            Selected Country: {selectedCountry}
+          </Typography>
+          <Typography variant="body1">
+            Selected State: {selectedState}
+          </Typography>
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 
