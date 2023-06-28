@@ -3,9 +3,14 @@
 
 
 ```
-src/
-    index.ts
-utils/
-    countries.ts
-    states.ts
+- src
+  - pages
+    - index.tsx
+  - utils
+    - countries.ts
+    - states.ts
+- components
+  - CountrySelector.tsx
+  - StateSelector.tsx
+
 ```
