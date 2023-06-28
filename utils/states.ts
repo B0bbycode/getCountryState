@@ -12,7 +12,7 @@ type StateMap = {
         'Canada': ['Ontario', 'Quebec', 'British Columbia', 'Alberta'],
         'Croatia': ['Zagreb', 'Split-Dalmatia County', 'Dubrovnik-Neretva County', 'Istria County'],
         'Cyprus': ['Nicosia', 'Limassol', 'Larnaca', 'Paphos'],
-        'Czech Republic': ['Prague', 'Central Bohemia', 'South Bohemia', 'Moravia-Silesia'],
+        'Czech': ['Prague', 'Central Bohemia', 'South Bohemia', 'Moravia-Silesia'],
         'Denmark': ['Capital Region of Denmark', 'Central Denmark Region', 'Region of Southern Denmark', 'North Denmark Region'],
         'Estonia': ['Harju County', 'Tartu County', 'Ida-Viru County', 'Pärnu County'],
         'Finland': ['Uusimaa', 'Pirkanmaa', 'Varsinais-Suomi', 'Kanta-Häme'],
