@@ -1,11 +1,11 @@
 import React from 'react';
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { getStates } from '../utils/states';
 
 type StateSelectorProps = {
   country: string;
   selectedState: string;
-  onStateChange: (event: React.ChangeEvent<{ value: unknown }>) => void;
+  onStateChange: (event: SelectChangeEvent) => void;
 };
 
 const StateSelector: React.FC<StateSelectorProps> = ({
