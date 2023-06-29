@@ -1,10 +1,10 @@
 import React from 'react';
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { getCountries } from '../utils/countries';
 
 type CountrySelectorProps = {
   selectedCountry: string;
-  onCountryChange: (event: React.ChangeEvent<{ value: unknown }>) => void;
+  onCountryChange: (event: SelectChangeEvent) => void;
 };
 
 const CountrySelector: React.FC<CountrySelectorProps> = ({
@@ -25,14 +25,18 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({
         <MenuItem value="">
           <em>Select</em>
         </MenuItem>
-        {countries.map((country) => (
-          <MenuItem key={country} value={country}>
-            {country}
-          </MenuItem>
-        ))}
+        {renderCountryOptions(countries)}
       </Select>
     </FormControl>
   );
+};
+
+const renderCountryOptions = (countries: string[]) => {
+  return countries.map((country) => (
+    <MenuItem key={country} value={country}>
+      {country}
+    </MenuItem>
+  ));
 };
 
 export default CountrySelector;
